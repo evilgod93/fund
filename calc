@@ -1,39 +1,22 @@
-
-mode=str(input('Input Operator'))
-op1=float(input('Input Operator 1'))
-op2=float(input('Input Operator 2'))
-
-
-
 def calculate(op1,op2,mode):
-    if mode=='add':
-        y=(op1+op2)
-    elif mode=='substract':
-        y=(op1-op2)
-    elif mode=='multiply':
-        y=(op1*op2)
-    elif mode=='divide':
-        y=(op1/op2)
-        
-    return(y)
+    switcher = {
+        'add': op1 + op2,
+        'substract': op1 - op2,
+        'multiply': op1 * op2,
+        'divide': divide(op1,op2)
+    }
+    
+    return(switcher.get(mode, "Invalid mode")) 
 
-my_result = calculate(op1,op2,mode)
-print(my_result)
+def divide(op1,op2):
+    try:
+        return op1/op2
+    except ZeroDivisionError:
+        return None
 
+if __name__ == "__main__":
+    mode = str(input('Input Operator: '))
+    op1 = float(input('Input Operator 1: '))
+    op2 = float(input('Input Operator 2: '))
 
-#ERROR CODE I'M GETTING
----------------------------------------------------------------------------
-UnboundLocalError                         Traceback (most recent call last)
-<ipython-input-39-eebf9b4347d4> in <module>
-      6 
-      7 # For subtraction
-----> 8 my_result = calculate(2,5,"subtract")
-      9 assert_equal(my_result,-3)
-     10 
-<ipython-input-38-38675be920fa> in calculate(op1, op2, mode)
-     51         y=(op1/op2)
-     52 
----> 53     return(y)
-     54 
-     55 
-UnboundLocalError: local variable 'y' referenced before assignment
+    print("The result is: " + str(calculate(op1,op2,mode)))
