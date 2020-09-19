@@ -16,7 +16,6 @@ def calculate(op1,op2,mode):
         y=(op1/op2)
         
     return(y)
-    end
 
 my_result = calculate(op1,op2,mode)
 print(my_result)
